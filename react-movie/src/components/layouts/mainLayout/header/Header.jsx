@@ -62,7 +62,7 @@ function Header() {
               <NavLink to="home">
                 <div className="flex justify-center items-center">
                   <img className="w-12" src="/icon.png" alt="" />
-                  <p className="text-xl font-bold  text-color4">yberM</p>
+                  <p className="text-xl font-bold  text-color4">yber</p>
                 </div>
               </NavLink>
               <div className="lg:hidden">

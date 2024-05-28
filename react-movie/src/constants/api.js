@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const BaseURL = 'https://movienew.cybersoft.edu.vn'
-const TokenCybersoft = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCA1NCIsIkhldEhhblN0cmluZyI6IjE0LzA1LzIwMjQiLCJIZXRIYW5UaW1lIjoiMTcxNTY0NDgwMDAwMCIsIm5iZiI6MTY4NzcxMjQwMCwiZXhwIjoxNzE1NzkyNDAwfQ.cy8EAM6hrKh2o6c9THZW5lrKeOEmQXIDgFVyIf7K_rU'
-export const MaNhom = 'GP09'
+const TokenCybersoft = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCA1NCIsIkhldEhhblN0cmluZyI6IjMwLzA2LzIwMjQiLCJIZXRIYW5UaW1lIjoiMTcxOTcwNTYwMDAwMCIsIm5iZiI6MTY4NzcxMjQwMCwiZXhwIjoxNzE2NDgzNjAwfQ.MzpuC5rOMTrjX0K2xS27PZLA_RnEApx7CJwHgi2CKw8'
+export const MaNhom = 'GP03'
 export const UserLogin = 'UserLogin'
 export const AccessToken = 'AccessToken'
 

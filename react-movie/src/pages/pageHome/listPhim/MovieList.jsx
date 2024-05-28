@@ -1,5 +1,5 @@
-import { PlayCircleOutlined } from "@ant-design/icons";
-import { Popover, Rate, Tabs } from "antd";
+
+import { Tabs } from "antd";
 import TabPane from "antd/es/tabs/TabPane";
 import React, { memo, useState } from "react";
 import ReactPlayer from "react-player";
@@ -112,6 +112,13 @@ function MovieList(props) {
   ];
   return (
     <Container className="MovieList container pb-10 pt-5 overflow-hidden">
+      <div className="text-white grid grid-cols-12 justify-between items-center my-5">
+        <div className="h-1 w-full bg-white col-span-4 "></div>
+        <span className="text-3xl font-bold col-span-4 text-center">
+          LỊCH CHIẾU
+        </span>
+        <div className="h-1 w-full bg-white col-span-4"></div>
+      </div>
       <Tabs defaultActiveKey="1" destroyInactiveTabPane={true}>
         {itemSlider.map((item) => (
           <TabPane

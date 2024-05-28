@@ -47,15 +47,15 @@ function ListPhanTrang(props) {
     setSoTrang(page);
   };
   return (
-    <div>
-      <div className="text-white grid grid-cols-12 justify-between items-center my-5">
+    <div className="container">
+      <div className="text-white  grid grid-cols-12 justify-between items-center my-5">
         <div className="h-1 w-full bg-white col-span-4 "></div>
         <span className="text-3xl font-bold col-span-4 text-center">
           DANH SÁCH PHIM
         </span>
         <div className="h-1 w-full bg-white col-span-4"></div>
       </div>
-      <div className="container w-full h-full">
+      <div className=" w-full h-full">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
           {phimPhanTrang &&
             phimPhanTrang.map((phim, i) => {

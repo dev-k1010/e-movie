@@ -1,7 +1,7 @@
 // đặt ghế
-import { Modal, Progress, Result, Tabs } from "antd";
+import { Button, Modal, Progress, Result, Space, Tabs, Tour } from "antd";
 import moment from "moment";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
@@ -15,7 +15,11 @@ import Lottie from "lottie-react";
 import animateSrc from "./anhdaden.json";
 import animateSrcSuccess from "./successamination.json";
 import monkeyanimation from "./monkeyamination.json";
-import { WarningOutlined } from "@ant-design/icons";
+import {
+  EllipsisOutlined,
+  StopOutlined,
+  WarningOutlined,
+} from "@ant-design/icons";
 import io from "socket.io-client";
 
 export default function Ticket() {
@@ -36,7 +40,7 @@ export default function Ticket() {
             {
               label: (
                 <span className="font-bold uppercase sm:text-lg text-color4">
-                  01-Chọn ghế & thanh toán
+                  01-Chọn ghế
                 </span>
               ),
               key: 1,
@@ -99,17 +103,31 @@ function ChonGhe() {
     if (ghe.daDat) {
       Modal.error({
         content: (
-          <div className="flex flex-col justify-center items-center">
-            <p className="text-center text-red-500 text-xl font-semibold">
-              Ghế đã có người đặt !
+          <div className="relative  flex flex-col justify-center items-center space-y-3">
+            <Lottie
+              animationData={monkeyanimation}
+              loop={true}
+              className=" w-60"
+            />
+            <p className="text-center text-color1 text-2xl font-semibold">
+              Mất ghế !
             </p>
-            <span>
-              <Lottie animationData={monkeyanimation} loop={true} />
-            </span>
+            <div className="flex flex-col justify-center items-center">
+              <p>
+                Không có được
+                <span className="text-color1 font-semibold"> CRUSH </span>
+                thì làm sao có được ghế !
+              </p>
+              <p className=" text-center">
+                Đó là người khác nói vậy. Còn{" "}
+                <span className="font-semibold text-color1"> Cyber </span> có
+                160 ghế cho bạn tẹt ga lựa chọn!
+              </p>
+            </div>
           </div>
         ),
         okButtonProps: {
-          className: "bg-red-500 text-white",
+          className: "bg-blue-600 hover:bg-blue-400 text-white",
         },
       });
       return;
@@ -118,17 +136,27 @@ function ChonGhe() {
     if (ghe.dangChon && ghe.taiKhoanNguoiDat !== user.taiKhoan) {
       Modal.error({
         content: (
-          <div className="flex flex-col justify-center items-center">
-            <p className="text-center text-red-500 text-xl font-semibold">
-              Ghế đã được chọn bởi người dùng khác !
+          <div className="relative  flex flex-col justify-center items-center space-y-3">
+            <Lottie
+              animationData={monkeyanimation}
+              loop={true}
+              className=" w-60"
+            />
+            <p className="text-center text-color1 text-2xl font-semibold">
+              Xin hãy dừng tay!
             </p>
-            <span>
-              <Lottie animationData={monkeyanimation} loop={true} />
-            </span>
+            <div className="flex flex-col justify-center items-center">
+              <p>Một rừng không thể có hai hổ</p>
+              <p>Một ghế không thể có hai người ngồi.</p>
+              <p className=" text-center">
+                <span className="font-semibold text-color1">Cyber </span> còn có
+                160 ghế xin thí chủ hãy chọn ghế khác!
+              </p>
+            </div>
           </div>
         ),
         okButtonProps: {
-          className: "bg-red-500 text-white",
+          className: "bg-blue-600 hover:bg-blue-400 text-white",
         },
       });
 
@@ -151,6 +179,28 @@ function ChonGhe() {
     socket.emit("updatedSeats", updatedSeats);
     dispatch(quanLyDatVeActions.danhSachGheDangDat(ghe));
   };
+  // Tour
+  const ref1 = useRef(null);
+  const ref2 = useRef(null);
+  const ref3 = useRef(null);
+  const [open, setOpen] = useState(false);
+  const steps = [
+    {
+      title: "Upload File",
+      description: "Put your files here.",
+      target: () => ref1.current,
+    },
+    {
+      title: "Save",
+      description: "Save your changes.",
+      target: () => ref2.current,
+    },
+    {
+      title: "Other Actions",
+      description: "Click to see other actions.",
+      target: () => ref3.current,
+    },
+  ];
 
   return (
     <div className="ChonGhe pt-3">
@@ -314,6 +364,7 @@ function ChonGhe() {
           <div className="pt-3">
             <button
               onClick={() => {
+                // setOpen(true);
                 dispatch(
                   datVe({
                     maLichChieu: param.malichchieu,
@@ -328,6 +379,16 @@ function ChonGhe() {
             >
               Đặt vé
             </button>
+            <Tour
+              open={open}
+              onClose={() => setOpen(false)}
+              steps={steps}
+              indicatorsRender={(current, total) => (
+                <span>
+                  {current + 1} / {total}
+                </span>
+              )}
+            />
           </div>
         </div>
       </div>

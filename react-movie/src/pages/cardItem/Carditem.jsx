@@ -6,9 +6,14 @@ function Carditem({ phim, navigate, renderTrailer, key }) {
   const renderHover = () => {
     return (
       <div className="h-[460px] w-72 flex flex-col items-start space-y-5 relative overflow-hidden">
-        <div className="text-xl font-semibold text-center flex justify-center items-center space-x-2 ">
-          <span className="text-white bg-color4 px-2 py-1 rounded-lg">C18</span>
-          <p className="text-black">{phim.tenPhim}</p>
+        <div className=" text-center flex justify-center items-center space-x-2 ">
+          <img src={phim.hinhAnh} alt="" loading="lazy" className="w-28 h-32" />
+          <div className="flex flex-col items-start justify-start space-y-2">
+            <p className="text-black text-xl font-bold">{phim.tenPhim}</p>
+            <p className="text-base">
+              Mã phim: <span className="text-color4">{phim.maPhim}</span>{" "}
+            </p>
+          </div>
         </div>
         <div className="text-base space-y-1">
           <div className="flex justify-start items-center space-x-3">
@@ -17,14 +22,12 @@ function Carditem({ phim, navigate, renderTrailer, key }) {
             </span>
             <Rate disabled value={phim.danhGia} />
           </div>
-          <p>
-            Mã phim: <span className="text-color4">{phim.maPhim}</span>{" "}
-          </p>
+
           <p>
             Ngày khởi chiếu:
             <span className="text-color4">{phim.ngayKhoiChieu}</span>
           </p>
-          <p className="line-clamp-10">{phim.moTa}</p>
+          <p className="line-clamp-[8]">{phim.moTa}</p>
           <div className="absolute bottom-0 w-full">
             <button
               onClick={() => navigate(`/detail/${phim.maPhim}`)}
@@ -38,20 +41,33 @@ function Carditem({ phim, navigate, renderTrailer, key }) {
     );
   };
   return (
-    <Popover content={() => renderHover()} placement="left" key={key}>
+    <Popover
+      content={() => renderHover()}
+      placement="left"
+      key={key}
+    >
       <div className="p-5 ">
         <div className="shadow-lg shadow-black/70 rounded-md overflow-hidden group">
           <div className="relative group">
-            <img src={phim.hinhAnh} alt="" loading="lazy" className="w-full h-[350px]" />
+            <img
+              src={phim.hinhAnh}
+              alt=""
+              loading="lazy"
+              className="w-full h-[350px]"
+            />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-0 duration-500 transition-opacity group-hover:opacity-100 flex items-center justify-center">
               <button onClick={() => renderTrailer(phim)}>
                 <PlayCircleOutlined className="text-7xl text-white" />
               </button>
             </div>
           </div>
-          <div className="text-xl px-3 font-bold text-center flex justify-start items-center truncate text-white transition duration-500 group-hover:bg-black py-2">
-            <span className=" bg-color1 px-2 py-1 rounded-lg ">C18</span>
-            <p className=" text-ellipsis overflow-hidden">{phim.tenPhim}</p>
+          <div className="text-xl px-3 font-bold grid grid-cols-3 truncate text-white transition duration-500 group-hover:bg-black py-2 ">
+            <div className="col-span-1 flex justify-start">
+              <span className=" bg-color1 px-2 py-1 rounded-lg ">C18</span>
+            </div>
+            <p className="col-span-2 text-ellipsis overflow-hidden ">
+              {phim.tenPhim}
+            </p>
           </div>
           <div className="flex flex-col justify-between">
             <button

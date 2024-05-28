@@ -13,7 +13,7 @@ const io = new Server(server, {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-// app.listen(8080);
+
 const port = process.env.PORT || 8080;
 server.listen(port, () => {
   console.log(`Server is running on port ${port}`);
